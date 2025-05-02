@@ -206,11 +206,16 @@ Route::group(['prefix' => 'wallet', 'middleware' => 'UserMiddleware'], function 
     Route::get('saveChargeWallet/{username}', 'WalletController@saveChargeWallet')->name('user.saveChargeWallet');
 });
 
+Route::get('/wallet/approve/{id}', [WalletController::class, 'approveCharge'])->name('wallet.approveCharge');
+Route::get('/wallet/reject/{id}', [WalletController::class, 'rejectCharge'])->name('wallet.rejectCharge');
+
 ///Buy movie
 
 Route::group(['prefix' => 'payment', 'middleware' => 'UserMiddleware'], function () {
     Route::get('buy/{movie_id}', 'PaymentController@buyMovie')->name('user.buyMovie');
 });
+
+Route::get('/buy-movie/{movie_id}', [PaymentController::class, 'buyMovie'])->name('movie.buy');
 
 ///Reject All
 
